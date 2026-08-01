@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Route;
 
 class ReservationController extends Controller
 {
@@ -13,7 +14,7 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        return Inertia::render('Reservations/Index', ['reservations' => Reservation::query()->latest()->get()]);
+        return Inertia::render('dashboard', ['reservation' => Reservation::query()->latest()->get()]);
     }
 
     /**
@@ -37,7 +38,7 @@ class ReservationController extends Controller
         ]);
 
         Reservation::create($data);
-        return redirect()->route('reservations.index')->with('success', 'Reservation created successfully.');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -70,7 +71,7 @@ class ReservationController extends Controller
         ]);
 
         $reservation->update($data);
-        return redirect()->route('reservations.index')->with('success', 'Reservation updated successfully.');
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -79,6 +80,6 @@ class ReservationController extends Controller
     public function destroy(Reservation $reservation)
     {
         $reservation->delete();
-        return redirect()->route('reservations.index')->with('success', 'Reservation deleted successfully.');
+        return redirect()->route('dashboard');
     }
 }

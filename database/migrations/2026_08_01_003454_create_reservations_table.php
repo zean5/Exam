@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->unsignedBigInteger('room_id');
-            $table->string('status')->default('pending');
+            $table->string('status');
             $table->dateTime('start_time');
             $table->dateTime('end_time');
             $table->timestamps();

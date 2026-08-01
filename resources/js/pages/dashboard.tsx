@@ -10,9 +10,9 @@ export default function Dashboard() {
 
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        form.post('/products' , {
+        form.post('/reservations', {
             onSuccess: () => form.reset(),
-    }); 
+        });
     }
 
     return (
@@ -20,12 +20,12 @@ export default function Dashboard() {
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div>
-                    <h1 className="text-x1 font-semibold">Products</h1>
+                    <h1 className="text-xl font-semibold">Hotel Reservation</h1>
                     <p className="text-sm text-muted-foreground">
-                        Add a new Product to your store.
+                        Please fill out the form below to make a reservation.
                     </p>
 
-                <form onSubmit= {submit} className="max-w-x1 space-y-2 rounded-x1 border p-4">
+                <form onSubmit={submit} className="max-w-xl space-y-2 rounded-xl border p-4">
                     
                     <div className="space-y-2">
                     <label htmlFor="name">Name</label>
@@ -45,7 +45,7 @@ export default function Dashboard() {
                         value={form.data.room_id} 
                         onChange={(event)=> form.setData('room_id', event.target.value)}
                         />
-                        {form.errors.start_time && <p className="text-sm text-red-600">{form.errors.start_time}</p>} 
+                        {form.errors.room_id && <p className="text-sm text-red-600">{form.errors.room_id}</p>} 
                         
                     </div>
 
@@ -58,8 +58,9 @@ export default function Dashboard() {
                         onChange={(event)=> form.setData('start_time', event.target.value)}
                         />
                         {form.errors.start_time && <p className="text-sm text-red-600">{form.errors.start_time}</p>} 
-
                     </div>
+
+
 
                     <div className="space-y-2">
                     <label htmlFor="end_time">End Time</label>
