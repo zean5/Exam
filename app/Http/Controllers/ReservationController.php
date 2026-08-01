@@ -30,14 +30,16 @@ class ReservationController extends Controller
     //  */
     public function store(Request $request)
     {
-        $data=$request->validate([
+        $data = $request->validate([
             'name' => 'required|string|max:255',
             'room_id' => 'required|integer',
-            'start_time' => 'required|date',
-            'end_time' => 'required|date|after:start_time',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'date_of_arrival' => 'required|date|after_or_equal:start_date',
         ]);
 
         Reservation::create($data);
+
         return redirect()->route('dashboard');
     }
 
@@ -65,9 +67,9 @@ class ReservationController extends Controller
         $data = $request->validate([
             'name' => 'required|string|max:255',
             'room_id' => 'required|integer',
-            'start_time' => 'required|date',
-            'end_time' => 'required|date|after:start_time',
-            'status' => 'required|string|in:pending,confirmed,cancelled',
+            'start_date' => 'required|date',
+            'end_date' => 'required|date|after:start_date',
+            'date_of_arrival' => 'required|date|after_or_equal:start_date',
         ]);
 
         $reservation->update($data);

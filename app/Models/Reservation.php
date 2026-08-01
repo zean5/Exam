@@ -9,8 +9,9 @@ class Reservation extends Model
     protected $fillable = [
         'name',
         'room_id',
-        'start_time',
-        'end_time',
-        'status',
+        'start_date',
+        'end_date',
+        'date_of_arrival',
+        
     ];
 }

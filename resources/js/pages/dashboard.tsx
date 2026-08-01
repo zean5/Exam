@@ -6,13 +6,13 @@ import { useForm } from '@inertiajs/react';
 import { dashboard } from '@/routes';
 
 export default function Dashboard() {
-    const form = useForm({ name: "", room_id: "", start_time: "", end_time: "", status: "" });
+    const form = useForm({ name: "", room_id: "", start_date: "", end_date: "", date_of_arrival: "" });
 
     function submit(event: React.FormEvent<HTMLFormElement>) {
         event.preventDefault();
-        form.post('/reservations', {
+        form.post('/reservations' , {
             onSuccess: () => form.reset(),
-        });
+    }); 
     }
 
     return (
@@ -20,12 +20,12 @@ export default function Dashboard() {
             <Head title="Dashboard" />
             <div className="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4">
                 <div>
-                    <h1 className="text-xl font-semibold">Hotel Reservation</h1>
+                    <h1 className="text-x1 font-semibold">Reservations</h1>
                     <p className="text-sm text-muted-foreground">
-                        Please fill out the form below to make a reservation.
+                        Please fill out the form below to create a new reservation.
                     </p>
 
-                <form onSubmit={submit} className="max-w-xl space-y-2 rounded-xl border p-4">
+                <form onSubmit= {submit} className="max-w-x1 space-y-2 rounded-x1 border p-4">
                     
                     <div className="space-y-2">
                     <label htmlFor="name">Name</label>
@@ -45,36 +45,41 @@ export default function Dashboard() {
                         value={form.data.room_id} 
                         onChange={(event)=> form.setData('room_id', event.target.value)}
                         />
-                        {form.errors.room_id && <p className="text-sm text-red-600">{form.errors.room_id}</p>} 
                         
                     </div>
-
-
                     <div className="space-y-2">
-                    <label htmlFor="start_time">Start Time</label>
+                    <label htmlFor="start_time">Start Date</label>
                     <Input 
                         id="start_time" 
-                        value={form.data.start_time} 
-                        onChange={(event)=> form.setData('start_time', event.target.value)}
+                        value={form.data.start_date} 
+                        onChange={(event)=> form.setData('start_date', event.target.value)}
                         />
-                        {form.errors.start_time && <p className="text-sm text-red-600">{form.errors.start_time}</p>} 
+                        {form.errors.start_date && <p className="text-sm text-red-600">{form.errors.start_date}</p>} 
+
                     </div>
-
-
-
                     <div className="space-y-2">
-                    <label htmlFor="end_time">End Time</label>
+                    <label htmlFor="end_time">End Date</label>
                     <Input 
                         id="end_time" 
-                        value={form.data.end_time} 
-                        onChange={(event)=> form.setData('end_time', event.target.value)}
+                        value={form.data.end_date} 
+                        onChange={(event)=> form.setData('end_date', event.target.value)}
                         />
-                        {form.errors.end_time && <p className="text-sm text-red-600">{form.errors.end_time}</p>}
+                        {form.errors.end_date && <p className="text-sm text-red-600">{form.errors.end_date}</p>} 
+
                     </div>
+                    <div className="space-y-2">
+                    <label htmlFor="date_of_arrival">Date of Arrival</label>
+                    <Input 
+                        id="date_of_arrival" 
+                        value={form.data.date_of_arrival} 
+                        onChange={(event)=> form.setData('date_of_arrival', event.target.value)}
+                        />
+                        {form.errors.date_of_arrival && <p className="text-sm text-red-600">{form.errors.date_of_arrival}</p>} 
 
-
-
-                    <Button type="submit" disabled={form.processing}>Save Product</Button>
+                    </div>
+                    
+                    
+                    <Button type="submit" disabled={form.processing}>Save Reservation</Button>
                 </form>
 
 
@@ -86,21 +91,7 @@ export default function Dashboard() {
 
 
 
-                {/* <div className="grid auto-rows-min gap-4 md:grid-cols-3">
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
 
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                    <div className="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border">
-                        <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                    </div>
-                </div>
-                <div className="relative min-h-[100vh] flex-1 overflow-hidden rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border">
-                    <PlaceholderPattern className="absolute inset-0 size-full stroke-neutral-900/20 dark:stroke-neutral-100/20" />
-                </div>*/}
 
             </div>
         </>
