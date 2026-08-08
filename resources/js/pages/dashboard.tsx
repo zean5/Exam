@@ -80,6 +80,7 @@ export default function Dashboard() {
                     
                     
                     <Button type="submit" disabled={form.processing}>Save Reservation</Button>
+                    
                 </form>
 
 
@@ -105,4 +106,8 @@ Dashboard.layout = {
             href: dashboard(),
         },
     ],
-};
+}; 
+
+
+
+99/100
